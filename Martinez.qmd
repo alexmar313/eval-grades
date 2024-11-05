@@ -46,7 +46,6 @@ ggplot(students_per_group, aes(x = group, y = n)) +
     labs(title = "Number of Students per Group", x = "Group", y = "Number of Students")
 ```
 
-
 # Q6
 ```{r}
 radiation_avg <- grades %>%
@@ -57,6 +56,19 @@ ggplot(radiation_avg, aes(x = factor(group), y = avg_grade)) +
     geom_col() +
     labs(title = "Average Grades in Radiation Ecology and Environmental Science by Group", 
          x = "Group", y = "Average Grade")
+```
+
+### Q7 
+```{r}
+ggplot(grades, aes(x = as.factor(module), y = grade)) +
+  geom_boxplot() +
+  labs(x = "Module", y = "Grade", title = "Distribution of Grades by Module") +
+  theme_minimal()
+
+ggplot(grades, aes(x = grade, fill = as.factor(module))) +
+  geom_density(alpha = 0.6) +
+  labs(x = "Grade", y = "Density", title = "Density of Grades by Module", fill = "Module") +
+  theme_minimal()
 ```
 
 # Q8
@@ -89,8 +101,34 @@ renewable_grades %>%
   slice_tail(n = 5) %>% knitr::kable()
 ```
 
-# Q10
+### Q10
 ```{r}
+renewable_grades <- grades %>%
+  filter(course == "Renewable Energy and Sustainable Living") %>%
+  group_by(id) %>%
+  summarise(num_grades = n())
+
+ggplot(renewable_grades, aes(x = num_grades)) +
+  geom_histogram(binwidth = 1, color = "black", fill = "skyblue") +
+  labs(x = "Number of Grades", y = "Number of Students",
+       title = "Distribution of Grades per Student in Renewable Energy and Sustainable Living") +
+  theme_minimal()
+```
+
+### Q11
+```{r}
+group_renewable_grades <- grades %>%
+  filter(course == "Renewable Energy and Sustainable Living") %>%
+  group_by(group, id) %>%
+  summarise(num_grades = n()) %>%
+  group_by(group) %>%
+  summarise(avg_grades = mean(num_grades))
+
+ggplot(group_renewable_grades, aes(x = as.factor(group), y = avg_grades)) +
+  geom_col() +
+  labs(x = "Group", y = "Average Number of Grades",
+       title = "Average Number of Grades per Group in Renewable Energy and Sustainable Living") +
+  theme_minimal()
 
 ```
 
