@@ -41,7 +41,17 @@ ggplot(students_per_group, aes(x = group, y = n)) +
 ```
 
 
-# Q5
+# Q6
+```{r}
+radiation_avg <- grades %>%
+    filter(course == "Radiation Ecology and Environmental Science") %>%
+    group_by(group) %>%
+    summarise(avg_grade = mean(grade, na.rm = TRUE))
+ggplot(radiation_avg, aes(x = factor(group), y = avg_grade)) +
+    geom_col() +
+    labs(title = "Average Grades in Radiation Ecology and Environmental Science by Group", 
+         x = "Group", y = "Average Grade")
+```
 
 
 # Q5
