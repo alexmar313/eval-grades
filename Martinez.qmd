@@ -108,6 +108,17 @@ average_grades_per_course %>%
   knitr::kable()
 ```
 
+# Q13
+```{r}
+ggplot(average_grades_per_course, aes(x = `Mechanical Engineering and Vehicle Repair`, y = `Combat Tactics and Self-Defense`)) +
+  geom_point() +
+  labs(title = "Average Grades in Combat Tactics vs. Mechanical Engineering", x = "Mechanical Engineering and Vehicle Repair", y = "Combat Tactics and Self-Defense") +
+  theme_minimal()
+
+
+```
+
+
 
 
 
