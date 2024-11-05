@@ -1,17 +1,23 @@
 ---
 title: "Martinez"
-format: html
+format:
+  html: default
+  pdf: default
 ---
 
 ```{r}
+#| message: false
 here::i_am("eval-grades.Rproj")
 library(dplyr)
 library(ggplot2)
-library(tidyr)
+library(tidyr)	
+library(here)
+library(vroom)
 ```
 # Q1
 ```{r}
-grades <- read_csv("grades.csv")
+#| message: false
+grades <- vroom(here("grades.csv"))
 ```
 
 # Q2
@@ -29,7 +35,7 @@ print(paste("The data set contains", num_students, "students."))
 # Q4
 ```{r}
 students <- grades %>% distinct(id, group)
-students %>% slice_head(n = 5) # Display a few rows for preview
+students %>% slice_head(n = 5) %>% knitr::kable()
 ```
 
 # Q5
@@ -58,7 +64,7 @@ ggplot(radiation_avg, aes(x = factor(group), y = avg_grade)) +
 grades %>%
     group_by(id, group) %>%
     summarise(num_grades = n(), .groups = 'drop') %>%
-    slice_head(n = 5) 
+    slice_head(n = 5) %>% knitr::kable()
 
 grades %>%
     group_by(id, group) %>%
@@ -69,7 +75,7 @@ grades %>%
         Median = median(grade, na.rm = TRUE),
         .groups = 'drop'
     ) %>%
-    slice_head(n = 5) 
+    slice_head(n = 5) %>% knitr::kable()
 ```
 
 # Q9
@@ -80,9 +86,13 @@ renewable_grades <- grades %>%
   summarise(num_grades = n(), .groups = "drop")
 
 renewable_grades %>%
-  slice_head(n = 5)
+  slice_head(n = 5) %>% knitr::kable()
 ```
 
+# Q10
+```{r}
+
+```
 
 
 
