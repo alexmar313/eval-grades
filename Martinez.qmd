@@ -32,5 +32,16 @@ students <- grades %>% distinct(id, group)
 students %>% slice_head(n = 5) # Display a few rows for preview
 ```
 
+# Q5
+```{r}
+students_per_group <- students %>% count(group)
+ggplot(students_per_group, aes(x = group, y = n)) +
+    geom_bar(stat = "identity") +
+    labs(title = "Number of Students per Group", x = "Group", y = "Number of Students")
+```
+
+
+# Q5
+
 
 # Q5
