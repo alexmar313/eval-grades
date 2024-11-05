@@ -146,8 +146,22 @@ ggplot(top_group_data, aes(x = `Post-Apocalyptic History and Archaeology`, y = `
 
 ```
 
+# Q16
+```{r}
+final_grades <- grades %>%
+  group_by(id, group) %>%
+  summarise(final_grade = mean(grade, na.rm = TRUE), .groups = "drop") %>%
+  arrange(desc(final_grade))
 
+final_grades %>% slice_head(n = 5) %>%
+  knitr::kable() 
 
+```
+
+# Q17
+```{r}
+
+```
 
 
 

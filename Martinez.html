@@ -573,6 +573,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="q16" class="level1">
+<h1>Q16</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>final_grades <span class="ot">&lt;-</span> grades <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id, group) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">final_grade =</span> <span class="fu">mean</span>(grade, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(final_grade))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>final_grades <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: right;">group</th>
+<th style="text-align: right;">final_grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">552</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">12.05300</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">930</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">11.92642</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">11.71923</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">438</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">11.68077</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">690</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">11.63846</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="q17" class="level1">
+<h1>Q17</h1>
+</section>
 
 </main>
 <!-- /main column -->
