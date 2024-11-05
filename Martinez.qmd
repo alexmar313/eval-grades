@@ -160,7 +160,21 @@ final_grades %>% slice_head(n = 5) %>%
 
 # Q17
 ```{r}
+group_final_grades <- final_grades %>%
+  group_by(group) %>%
+  summarise(avg_final_grade = mean(final_grade, na.rm = TRUE), .groups = "drop") %>%
+  arrange(desc(avg_final_grade))
 
+# Table
+group_final_grades %>%
+  knitr::kable() 
+
+# Graph
+library(ggplot2)
+ggplot(group_final_grades, aes(x = factor(group), y = avg_final_grade)) +
+  geom_col() +
+  labs(x = "Group", y = "Average Final Grade", title = "Average Final Grade per Group") +
+  theme_minimal()
 ```
 
 
