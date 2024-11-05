@@ -53,5 +53,36 @@ ggplot(radiation_avg, aes(x = factor(group), y = avg_grade)) +
          x = "Group", y = "Average Grade")
 ```
 
+# Q8
+```{r}
+grades %>%
+    group_by(id, group) %>%
+    summarise(num_grades = n(), .groups = 'drop') %>%
+    slice_head(n = 5) 
 
-# Q5
+grades %>%
+    group_by(id, group) %>%
+    summarise(
+        Minimum = min(grade, na.rm = TRUE),
+        Maximum = max(grade, na.rm = TRUE),
+        Average = mean(grade, na.rm = TRUE),
+        Median = median(grade, na.rm = TRUE),
+        .groups = 'drop'
+    ) %>%
+    slice_head(n = 5) 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
