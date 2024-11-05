@@ -9,7 +9,28 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 ```
+# Q1
 ```{r}
 grades <- read_csv("grades.csv")
 ```
 
+# Q2
+```{r}
+num_grades <- nrow(grades)
+print(paste("The data set contains", num_grades, "grades."))
+```
+
+# Q3
+```{r}
+num_students <- grades %>% distinct(id) %>% nrow()
+print(paste("The data set contains", num_students, "students."))
+```
+
+# Q4
+```{r}
+students <- grades %>% distinct(id, group)
+students %>% slice_head(n = 5) # Display a few rows for preview
+```
+
+
+# Q5
