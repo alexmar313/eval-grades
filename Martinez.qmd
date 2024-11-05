@@ -35,7 +35,7 @@ print(paste("The data set contains", num_students, "students."))
 # Q4
 ```{r}
 students <- grades %>% distinct(id, group)
-students %>% slice_head(n = 5) %>% knitr::kable()
+students %>% slice_tail(n = 5) %>% knitr::kable()
 ```
 
 # Q5
@@ -64,7 +64,7 @@ ggplot(radiation_avg, aes(x = factor(group), y = avg_grade)) +
 grades %>%
     group_by(id, group) %>%
     summarise(num_grades = n(), .groups = 'drop') %>%
-    slice_head(n = 5) %>% knitr::kable()
+    slice_tail(n = 5) %>% knitr::kable()
 
 grades %>%
     group_by(id, group) %>%
@@ -75,7 +75,7 @@ grades %>%
         Median = median(grade, na.rm = TRUE),
         .groups = 'drop'
     ) %>%
-    slice_head(n = 5) %>% knitr::kable()
+    slice_tail(n = 5) %>% knitr::kable()
 ```
 
 # Q9
@@ -86,7 +86,7 @@ renewable_grades <- grades %>%
   summarise(num_grades = n(), .groups = "drop")
 
 renewable_grades %>%
-  slice_head(n = 5) %>% knitr::kable()
+  slice_tail(n = 5) %>% knitr::kable()
 ```
 
 # Q10
@@ -94,7 +94,19 @@ renewable_grades %>%
 
 ```
 
+# Q12
+```{r}
+average_grades_per_course <- grades %>%
+  group_by(id, group, course) %>%
+  summarise(avg_grade = mean(grade, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = course, values_from = avg_grade)
 
+
+average_grades_per_course %>%
+  select(id, group, `Art and Expression in a Post-Apocalyptic World`, `Combat Tactics and Self-Defense`) %>%
+  tail(5) %>%
+  knitr::kable()
+```
 
 
 
