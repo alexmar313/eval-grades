@@ -72,6 +72,16 @@ grades %>%
     slice_head(n = 5) 
 ```
 
+# Q9
+```{r}
+renewable_grades <- grades %>%
+  filter(course == "Renewable Energy and Sustainable Living") %>%
+  group_by(id, group) %>%
+  summarise(num_grades = n(), .groups = "drop")
+
+renewable_grades %>%
+  slice_head(n = 5)
+```
 
 
 
