@@ -1,0 +1,15 @@
+---
+title: "Martinez"
+format: html
+---
+
+```{r}
+here::i_am("eval-grades.Rproj")
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+```
+```{r}
+grades <- read_csv("grades.csv")
+```
+
