@@ -111,24 +111,38 @@ average_grades_per_course %>%
 # Q13
 ```{r}
 ggplot(average_grades_per_course, aes(x = `Mechanical Engineering and Vehicle Repair`, y = `Combat Tactics and Self-Defense`)) +
-  geom_point() +
+  geom_hex() +
+  scale_fill_viridis_c() +
   labs(title = "Average Grades in Combat Tactics vs. Mechanical Engineering", x = "Mechanical Engineering and Vehicle Repair", y = "Combat Tactics and Self-Defense") +
   theme_minimal()
-
 
 ```
 
 # Q14
 ```{r}
-average_grades_per_course %>%
+correlation_by_group <- average_grades_per_course %>%
   group_by(group) %>%
-  summarise(correlation = cor(`Moral Philosophy and Ethical Decision-Making`, `Post-Apocalyptic History and Archaeology`, use = "complete.obs"))  %>%
+  summarise(correlation = cor(`Moral Philosophy and Ethical Decision-Making`, `Post-Apocalyptic History and Archaeology`, use = "complete.obs")) 
+
+correlation_by_group %>%
   knitr::kable()
 
 ```
 
 # Q15
 ```{r}
+top_group <- correlation_by_group %>%
+  filter(abs(correlation) == max(abs(correlation))) %>%
+  pull(group)
+
+top_group_data <- average_grades_per_course %>%
+  filter(group == top_group)
+
+ggplot(top_group_data, aes(x = `Post-Apocalyptic History and Archaeology`, y = `Moral Philosophy and Ethical Decision-Making`)) +
+  geom_hex() +
+  scale_fill_viridis_c() +
+  labs(title = paste("Grades in Moral Philosophy vs. History for Group", top_group), x = "Post-Apocalyptic History and Archaeology", y = "Moral Philosophy and Ethical Decision-Making") +
+  theme_minimal()
 
 ```
 
