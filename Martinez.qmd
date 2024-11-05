@@ -118,7 +118,19 @@ ggplot(average_grades_per_course, aes(x = `Mechanical Engineering and Vehicle Re
 
 ```
 
+# Q14
+```{r}
+average_grades_per_course %>%
+  group_by(group) %>%
+  summarise(correlation = cor(`Moral Philosophy and Ethical Decision-Making`, `Post-Apocalyptic History and Archaeology`, use = "complete.obs"))  %>%
+  knitr::kable()
 
+```
+
+# Q15
+```{r}
+
+```
 
 
 
